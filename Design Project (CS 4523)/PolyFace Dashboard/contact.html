@@ -1,0 +1,43 @@
+<?php
+	require 'db.php';
+    session_start();
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<title>PolyFace Dashboard</title>
+<body>
+<div id="wrapper">
+    <div class="header"></div>
+    <div class="body">
+        <div class="nav">
+        <a href=""><img class="button" src="Button_Menu.gif"></a><br/> 
+        <a href="index.html"><img class="button" src="Button_Home.gif"></a> <br/>
+        <a href="about.html"><img class="button" src="Button_About.gif"></a> <br/>
+        <a href="event.html"><img class="button" src="Button_Event.gif"></a> <br/>
+        <a href="reminders.html"><img class="button" src="Button_Reminders.gif"></a> <br/>
+        <a href="contact.html"><img class="button" src="Button_Contact.gif"></a> <br/>
+        <?php
+        	if(isset($_SESSION["username"])){
+            	echo '<a href="logout.html"><img class="button" src="Button_Logout.gif"></a>';
+            }
+            else{
+            	echo '<a href="login.html"><img class="button" src="Button_Login.gif"></a>';
+            }
+        ?>
+        </div>
+        <div class="main">
+        <font size="20px">Site Administrators:</font><br>
+        Basia Bowens<br>
+        email: bbowen01@students.poly.edu<br><br>
+        Wendy Lau<br>
+        email: wlau01@students.poly.edu<br><br>
+        Wayne Jones<br>
+        email: wjones01@students.poly.edu<br><br>
+        </div>
+     </div>
+     <div class="footer"></div>
+</div>
+</body>
+</html>

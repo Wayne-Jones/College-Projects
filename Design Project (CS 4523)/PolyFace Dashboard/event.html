@@ -1,0 +1,40 @@
+<?php
+	require 'db.php';
+    session_start();
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<title>PolyFace Dashboard</title>
+<body>
+<div id="wrapper">
+    <div class="header"></div>
+    <div class="body">
+        <div class="nav">
+        <a href=""><img class="button" src="Button_Menu.gif"></a><br/> 
+        <a href="index.html"><img class="button" src="Button_Home.gif"></a> <br/>
+        <a href="about.html"><img class="button" src="Button_About.gif"></a> <br/>
+        <a href="event.html"><img class="button" src="Button_Event.gif"></a> <br/>
+        <a href="reminders.html"><img class="button" src="Button_Reminders.gif"></a> <br/>
+        <a href="contact.html"><img class="button" src="Button_Contact.gif"></a> <br/>
+        <?php
+        	if(isset($_SESSION["username"])){
+            	echo '<a href="logout.html"><img class="button" src="Button_Logout.gif"></a>';
+            }
+            else{
+            	echo '<a href="login.html"><img class="button" src="Button_Login.gif"></a>';
+            }
+        ?>
+        </div>
+		<div class="main">
+			<a href="academic.html"><img class="picsize" src="eventpics/home_academics.jpg"></a>
+			<a href="social.html"><img class="picsize" src="eventpics/home_social.jpg"></a>
+			<a href="reminders.html"><img class="picsize" src="eventpics/home_reminders.jpg"></a>
+			<a href="freefood.html"><img class="picsize" src="eventpics/home_freefood.jpg"></a>
+		</div>
+     </div>
+     <div class="footer"></div>
+</div>
+</body>
+</html>

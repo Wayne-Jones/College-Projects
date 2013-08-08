@@ -1,0 +1,47 @@
+<?php
+	require 'db.php';
+    session_start();
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<title>PolyFace Dashboard</title>
+<body>
+<div id="wrapper">
+    <div class="header"></div>
+    <div class="body">
+        <div class="nav">
+        <a href=""><img class="button" src="Button_Menu.gif"></a><br/> 
+        <a href="index.html"><img class="button" src="Button_Home.gif"></a> <br/>
+        <a href="about.html"><img class="button" src="Button_About.gif"></a> <br/>
+        <a href="event.html"><img class="button" src="Button_Event.gif"></a> <br/>
+        <a href="reminders.html"><img class="button" src="Button_Reminders.gif"></a> <br/>
+        <a href="contact.html"><img class="button" src="Button_Contact.gif"></a> <br/>
+        <?php
+        	if(isset($_SESSION["username"])){
+            	echo '<a href="logout.html"><img class="button" src="Button_Logout.gif"></a>';
+            }
+            else{
+            	echo '<a href="login.html"><img class="button" src="Button_Login.gif"></a>';
+            }
+        ?>
+        </div>
+        <div class="main"> <center>
+        <br> <b>Hello & Welcome to The PolyFace Dashboard from Team B5</b> </br><br>
+        <p>For our Senior Design Project we saught to create a Web UI where the
+        NYU-Poly Community could reference for all programs occurring on campus
+        in order to exploit the potential vibrancy that our campus hosts. Feel free to
+        take a look around, and if you wish to post an event you can do so
+        whether you are a member or not.The ultimate goal is for you to be able to see
+        what is going on on campus, and where campus related events are going on. Get started</p>
+        <br><br>
+        <p>Warmest,<br>
+        The Administration :)<br></p>
+        </center>
+        </div>
+        </div>
+     <div class="footer"></div>
+</div>
+</body>
+</html>

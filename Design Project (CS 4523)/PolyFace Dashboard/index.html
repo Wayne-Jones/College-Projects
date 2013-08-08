@@ -1,0 +1,131 @@
+<?php
+	require 'db.php';
+    session_start();
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<title>PolyFace Dashboard</title>
+<body>
+<div id="wrapper">
+    <div class="header"></div>
+    <div class="body">
+        <div class="nav">
+        <a href=""><img class="button" src="Button_Menu.gif"></a><br/> 
+        <a href="index.html"><img class="button" src="Button_Home.gif"></a> <br/>
+        <a href="about.html"><img class="button" src="Button_About.gif"></a> <br/>
+        <a href="event.html"><img class="button" src="Button_Event.gif"></a> <br/>
+        <a href="reminders.html"><img class="button" src="Button_Reminders.gif"></a> <br/>
+        <a href="contact.html"><img class="button" src="Button_Contact.gif"></a> <br/>
+        <?php
+        	if(isset($_SESSION["username"])){
+            	echo '<a href="logout.html"><img class="button" src="Button_Logout.gif"></a>';
+            }
+            else{
+            	echo '<a href="login.html"><img class="button" src="Button_Login.gif"></a>';
+            }
+        ?>
+        </div>
+        
+        <div class="main">
+        <?php
+        	if($_SESSION["permission"]=='1'){
+            	//If you are an admin display pending events
+            	echo '<p>Pending Events for Approval</p>';
+                echo '<p>Check all the events that you wish to approve</p>';
+                $query="Select eventid,nameofevent,typeofevent,timeofevent,locationofevent from event where isPublished='0'";
+                if($stmt = oci_parse($oci, $query)){
+                	oci_define_by_name($stmt, 'EVENTID', $eventID);
+                	oci_define_by_name($stmt, 'NAMEOFEVENT', $name);
+                    oci_define_by_name($stmt, 'TYPEOFEVENT', $type);
+                    oci_define_by_name($stmt, 'TIMEOFEVENT', $time);
+                    oci_define_by_name($stmt, 'LOCATIONOFEVENT', $location);
+                    
+                    oci_execute($stmt);
+                    while(oci_fetch($stmt)){
+                    	echo "<form action='approve.php' method='POST'>
+                        <p><input type='checkbox' name='event[]' value='".$eventID."'>Name: ".$name.", Type of Event: ".$type.", Time Of Event: ".$time.", Location: ".$location."</p>";
+                        
+                   	}
+                    echo "<input type='submit'></form>";
+					}
+			}
+            else if($_SESSION["permission"]=='0')
+            {
+                
+            //Display Form for Logged in Users
+            	if(isset($_SESSION["eventPosted"])){
+                	echo 'Your event has been posted to the dashboard';
+                    unset($_SESSION["eventPosted"]);
+                }
+                if(isset($_SESSION["invalidFile"])){
+                	echo 'Your file does not meet the specifications. Please try again';
+                    unset($_SESSION["invalidFile"]);
+                }
+                if(isset($_SESSION["fileExists"])){
+                	echo 'A file with the same name has already been uploaded to the dashboard. Please change the filename and try again';
+                    unset($_SESSION["fileExists"]);
+                }
+                if(isset($_SESSION["fileError"])){
+                	echo 'There was an error with uploading your file';
+                    unset($_SESSION["fileError"]);
+                }
+                echo '<p>Submit An Event</p>';
+                echo '<p> Fill in the following areas </p>';
+                echo '<form action="addevent.php" method="POST" enctype="multipart/form-data">';
+                echo 'Event Name: <input type="text" name="name"><br><br>';
+                echo 'Type Of Event: <input type="text" name="type"><br>';
+                echo 'Academic,Social,or Free Food Alert<br><br>';
+                echo 'Date of Event: <input type="text" name="date"><br>';
+                echo 'date format: mm/dd/yyyy <br><br>';
+                echo 'Time of Event: <input type="text" name="time"><br>';
+                echo 'time format: xx:xx xm <br><br>';
+                echo 'Location of Event: <input type="text" name="location"><br><br>';
+                echo 'Event Description: <textarea name="description"></textarea><br><br>';
+                echo 'Flier Image (Only JPG/PNG Files, Size limit: 400kb): <input type="file" name="file" id="file"><br>';
+                echo '<input type="submit" value="Submit"></form>';
+
+            }
+            else
+            {
+            //If user is not logged in, display event form
+            	if(isset($_SESSION["eventPending"])){
+                	echo 'Your event has been sent for approval';
+                    unset($_SESSION["eventPending"]);
+                }
+                if(isset($_SESSION["invalidFile"])){
+                	echo 'Your file does not meet the specifications. Please try again';
+                    unset($_SESSION["invalidFile"]);
+                }
+                if(isset($_SESSION["fileExists"])){
+                	echo 'A file with the same name has already been uploaded to the dashboard. Please change the filename and try again';
+                    unset($_SESSION["fileExists"]);
+                }
+                if(isset($_SESSION["fileError"])){
+                	echo 'There was an error with uploading your file';
+                    unset($_SESSION["fileError"]);
+                }
+                echo '<p>Submit An Event To Be Approved</p>';
+                echo '<p> Fill in the following areas </p>';
+                echo '<form action="addeventnonuser.php" method="POST" enctype="multipart/form-data">';
+                echo 'Event Name: <input type="text" name="name"><br><br>';
+                echo 'Type Of Event: <input type="text" name="type"><br>';
+                echo 'Academic,Social, or Free Food Alert<br><br>';
+                echo 'Date of Event: <input type="text" name="date"><br>';
+                echo 'date format: mm/dd/yyyy <br><br>';
+                echo 'Time of Event: <input type="text" name="time"><br>';
+                echo 'time format: xx:xx xm <br><br>';
+                echo 'Location of Event: <input type="text" name="eventLocation"><br><br>';
+                echo 'Event Description: <textarea name="description"></textarea><br><br>';
+                echo 'Flier Image (Only JPG/PNG Files, Size limit: 400kb): <input type="file" name="file" id="file"><br>';
+                echo '<input type="submit" value="Submit"></form>';
+            }
+            
+        ?>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>
+</body>
+</html>

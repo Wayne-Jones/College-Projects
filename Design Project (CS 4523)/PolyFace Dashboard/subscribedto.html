@@ -1,0 +1,13 @@
+<?php 
+
+include "include.php";
+
+if($stmt= $mysqli->prepare(" select NAMEOFEVENT, TIMEOFEVENT, PLACEOFEVENT, EVENTDESCRIPTION from user natural join subscribedto natural join event where USERNAME = ?"))
+{
+	$stmt->bind_param("s", $_SESSION["username"]);
+	$stmt->execute();
+	$stmt->bind_result($name,$time,$place,$description);
+}
+
+
+?>

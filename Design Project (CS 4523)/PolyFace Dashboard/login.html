@@ -1,0 +1,44 @@
+<?php
+	require 'db.php';
+    session_start();
+?>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<title>PolyFace Dashboard</title>
+<body>
+<div id="wrapper">
+    <div class="header"></div>
+    <div class="body">
+        <div class="nav">
+        <a href=""><img class="button" src="Button_Menu.gif"></a><br/> 
+        <a href="index.html"><img class="button" src="Button_Home.gif"></a> <br/>
+        <a href="about.html"><img class="button" src="Button_About.gif"></a> <br/>
+        <a href="event.html"><img class="button" src="Button_Event.gif"></a> <br/>
+        <a href="reminders.html"><img class="button" src="Button_Reminders.gif"></a> <br/>
+        <a href="contact.html"><img class="button" src="Button_Contact.gif"></a> <br/>
+        <?php
+        	if(isset($_SESSION["username"])){
+            	echo '<a href="logout.html"><img class="button" src="Button_Logout.gif"></a>';
+            }
+            else{
+            	echo '<a href="login.html"><img class="button" src="Button_Login.gif"></a>';
+            }
+        ?>
+        </div>
+        <div class="main">
+			<div class="login">
+			<form action="login.php" method="POST">
+			<p>UserName: </p><input type="text" name="username">
+			<p>Password: </p><input type="password" name="password">
+			<input type="submit">
+			<input type="reset"></div>
+			<h3>If you do not have an account and you would like to register for an account please click <a href="registration.html">here</a></h3>
+        </form>
+      </div>
+    </div>
+    <div class="footer"></div>
+</div>
+</body>
+</html>

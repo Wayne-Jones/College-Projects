@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{
+	background: url(images/blackjackbg.png) fixed no-repeat center;
+	}
+
+body,h1,h2,h3{ 
+	text-align: center;
+	}	
+h1,h2,h3{
+	color:#FFF;
+}

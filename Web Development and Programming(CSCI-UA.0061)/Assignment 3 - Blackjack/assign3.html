@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="blackjack.js"></script>
+    <script language="javascript">
+		var now = new Date();
+		now.setTime(now.getTime() + 365 * 24 * 60 * 60 * 1000);
+		var username = getCookie("username");
+		// if the cookie wasn't found, ask for the name
+		if (!username) {
+		  username = prompt("Please enter your name:", "");
+		}
+		// set the new cookie
+		setCookie("username", username, now);
+		if (username) {
+		  document.write("<h1>Blackjack Game - Welcome " + username + "!</h1>");
+		  setCookie("username", username, now);
+		} 
+	</script>
+    <link href="blackjack.css" rel="stylesheet" type="text/css">
+	<title>BlackJack Program</title>
+</head>
+<body>
+	<form>
+    	<h3>Card 1 Points:
+        <input name="firstCard" size="2" type="text">
+        <img name="c1" src="images/cardback.gif" width="95" height="135" border="1">
+        Card 2 Points:
+        <input name="secondCard" size="2" type="text">
+        <img name="c2" src="images/cardback.gif" width="95" height="135" border="1">
+        </h3>
+        <h2>Total Points for the hand:
+        <input name="total" size="2" type="text">
+        </h2>
+        <h2>Total Number of Hands so far:
+        <input name="hand" size="2" type="text">
+        </h2>
+        <h2>Number of identical pairs:
+        <input name="identical" size="2" type="text">
+        </h2>
+        <h1>Total number of BlackJacks so far is:
+        <input id="blackjack" name="blackjackNum" size="2" type="text" onload="this.value = numWins">
+        <script type="text/javascript">
+		document.getElementById("blackjack").value = numWins;
+		</script>
+        <br />
+        <input value="Deal" onClick="playBlackJack()" type="button">
+        </h1>
+    </form>
+</body>
+</html>
