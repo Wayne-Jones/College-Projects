@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accent", "Accent\Accent\Accent.csproj", "{A3CEA4FF-269A-4C29-AD96-120CEF586FAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccentContent", "Accent\AccentContent\AccentContent.contentproj", "{7F49E690-F356-48C9-ADB0-75CEDA8271B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3CEA4FF-269A-4C29-AD96-120CEF586FAD}.Debug|x86.ActiveCfg = Debug|x86
+		{A3CEA4FF-269A-4C29-AD96-120CEF586FAD}.Debug|x86.Build.0 = Debug|x86
+		{A3CEA4FF-269A-4C29-AD96-120CEF586FAD}.Release|x86.ActiveCfg = Release|x86
+		{A3CEA4FF-269A-4C29-AD96-120CEF586FAD}.Release|x86.Build.0 = Release|x86
+		{7F49E690-F356-48C9-ADB0-75CEDA8271B6}.Debug|x86.ActiveCfg = Debug|x86
+		{7F49E690-F356-48C9-ADB0-75CEDA8271B6}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

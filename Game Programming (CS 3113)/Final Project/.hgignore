@@ -1,0 +1,15 @@
+syntax: glob
+
+# Ignore VS 2010 Files
+bin*
+obj*
+properties*
+
+*.cachefile
+*.suo
+*.obj
+*.exe
+*.pdb
+*.user
+*.pch
+*.cache
